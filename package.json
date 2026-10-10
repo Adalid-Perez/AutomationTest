@@ -1,0 +1,35 @@
+{
+  "name": "automationtest",
+  "version": "1.0.0",
+  "description": "Automation test project with Cypress (E2E SauceDemo + API PetStore)",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "test:all": "cypress run",
+    "test:ui": "cypress run --spec \"cypress/e2e/ui/**/*.cy.js\"",
+    "test:api": "cypress run --spec \"cypress/e2e/api/**/*.cy.js\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "report": "start cypress/reports/html/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adalid-Perez/AutomationTest.git"
+  },
+  "keywords": [],
+  "author": "Adalid Perez ",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Adalid-Perez/AutomationTest/issues"
+  },
+  "homepage": "https://github.com/Adalid-Perez/AutomationTest#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "cypress": "^16.1.1",
+    "cypress-mochawesome-reporter": "^5.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-cypress": "^3.6.0",
+    "eslint-plugin-jsdoc": "^48.11.0"
+  }
+}
