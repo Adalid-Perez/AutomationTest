@@ -1,0 +1,57 @@
+========================================================
+ CONCLUSIONS OF THE EXERCISE
+========================================================
+
+1. Framework and approach
+-------------------------
+Cypress.io with JavaScript was used to cover two fronts:
+  - E2E UI tests (SauceDemo) with real browser interaction.
+  - REST service tests (PetStore) through cy.request.
+Applying the Page Object Model (POM) separated selectors and actions from
+assertions, keeping the specs readable and maintainable. If a selector changes,
+it is adjusted only in the corresponding Page Object.
+
+2. E2E tests (SauceDemo)
+------------------------
+- The full purchase flow (login, add products, cart, form and confirmation) runs
+  reliably using the data-test attributes, which are more robust than selectors
+  based on classes or text.
+- The confirmation text is displayed in uppercase through CSS (text-transform),
+  but in the DOM it is mixed case ("Thank you for your order!"). Therefore the
+  assertion compares the uppercased text to validate the "THANK YOU FOR YOUR
+  ORDER" requirement.
+- The negative case with locked_out_user confirms that the system blocks access
+  and shows a clear error message, evidencing credential handling.
+
+3. API tests (PetStore)
+-----------------------
+- A dynamic username (timestamp) was generated to avoid collisions with existing
+  data and to allow the tests to run repeatedly.
+- The full CRUD flow (create, find, update, find and delete) is validated by
+  checking status codes and response contents.
+- After deleting the user, a new request returns 404, confirming the effective
+  deletion.
+- failOnStatusCode:false was used to inspect error responses (such as the 404)
+  inside the assertions without Cypress aborting the test.
+- The POST /user response only returns {code, type, message} (not the user
+  object), so the creation assertion validates code and message, and the actual
+  creation is confirmed by the subsequent GET.
+
+4. Quality and reports
+----------------------
+- The lint setup (ESLint + Cypress plugin + JSDoc) helps detect unused
+  variables, weak comparisons, missing documentation and the use of Cypress
+  globals, keeping the code consistent.
+- cypress-mochawesome-reporter generates a navigable HTML report with the detail
+  of each test and embedded screenshots, which makes evidence gathering easier.
+
+5. General conclusions
+----------------------
+- Cypress is a versatile tool that covers both UI and API testing in a single
+  project, reducing the need for multiple tools.
+- Combining POM + data-test attributes + lint improves the maintainability,
+  stability and clarity of the test code.
+- The public practice services (SauceDemo and PetStore) are suitable to
+  demonstrate functional flows, although PetStore may show latency or variable
+  responses because it is a shared environment; running the tests with retries
+  (configured in the project) is recommended.
