@@ -1,6 +1,11 @@
 /**
  * API Page Object for the PetStore user endpoints.
  */
+const USER_PATH = '/user';
+
+/**
+ *
+ */
 class UserApi {
   /**
    * Creates a user through the PetStore API.
@@ -10,7 +15,7 @@ class UserApi {
   create(user) {
     return cy.request({
       method: 'POST',
-      url: `${Cypress.expose('apiUrl')}/user`,
+      url: `${Cypress.expose('apiUrl')}${USER_PATH}`,
       body: user,
       failOnStatusCode: false,
     });
@@ -24,7 +29,7 @@ class UserApi {
   get(username) {
     return cy.request({
       method: 'GET',
-      url: `${Cypress.expose('apiUrl')}/user/${username}`,
+      url: `${Cypress.expose('apiUrl')}${USER_PATH}/${username}`,
       failOnStatusCode: false,
     });
   }
@@ -38,7 +43,7 @@ class UserApi {
   update(username, user) {
     return cy.request({
       method: 'PUT',
-      url: `${Cypress.expose('apiUrl')}/user/${username}`,
+      url: `${Cypress.expose('apiUrl')}${USER_PATH}/${username}`,
       body: user,
       failOnStatusCode: false,
     });
@@ -52,7 +57,7 @@ class UserApi {
   remove(username) {
     return cy.request({
       method: 'DELETE',
-      url: `${Cypress.expose('apiUrl')}/user/${username}`,
+      url: `${Cypress.expose('apiUrl')}${USER_PATH}/${username}`,
       failOnStatusCode: false,
     });
   }

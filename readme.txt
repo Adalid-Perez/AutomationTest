@@ -67,6 +67,7 @@ Because the file may contain secrets, add cypress.env.json to .gitignore and
 optionally commit a cypress.env.example.json template with placeholder values.
 The LoginPage object receives the credentials as parameters and does not read
 the environment directly, keeping the Page Object decoupled from the config.
+In this case, I am keeping the cypress.env.json file for educational purposes.
 
 Reports
 -------
